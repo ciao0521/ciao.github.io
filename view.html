@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>生日快乐 🎂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/view.css">
+</head>
+<body>
+  <!-- 阶段1：开场动画（约7秒） -->
+  <div class="screen screen-animate active" id="screenAnimate">
+    <canvas id="animCanvas"></canvas>
+    <div class="animate-layer">
+      <div class="anim-scene anim-scene-1 active" id="animScene1">
+        <div class="anim-emoji pop">🎁</div>
+        <p class="anim-text fade-up">有一份超可爱的祝福</p>
+        <p class="anim-text fade-up delay">正向你飞奔而来～</p>
+      </div>
+      <div class="anim-scene anim-scene-2" id="animScene2">
+        <div class="anim-cake-wrap">
+          <div class="anim-balloons">
+            <span class="ab ab1">🎈</span>
+            <span class="ab ab2">🎈</span>
+            <span class="ab ab3">🎈</span>
+          </div>
+          <div class="anim-cake">
+            <div class="ac-top"><div class="ac-candle"><div class="ac-flame"></div></div></div>
+            <div class="ac-mid"></div>
+            <div class="ac-bot"></div>
+          </div>
+        </div>
+        <p class="anim-name" id="animName">生日快乐</p>
+      </div>
+      <div class="anim-scene anim-scene-3" id="animScene3">
+        <div class="anim-big-emoji">🎉</div>
+        <p class="anim-happy" id="animHappy">生日快乐！</p>
+        <div class="anim-sparkles">
+          <span>✨</span><span>🌟</span><span>💫</span><span>⭐</span><span>✨</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 阶段2：密码解锁 -->
+  <div class="screen screen-password" id="screenPassword">
+    <div class="pwd-card">
+      <div class="pwd-mascot">🔐</div>
+      <h2>输入生日密码</h2>
+      <p class="pwd-desc">请输入你的生日（月月日日，4 位数字）<br>才能解锁后面的惊喜哦～</p>
+      <div class="pwd-input-wrap">
+        <input type="text" id="pwdInput" maxlength="4" inputmode="numeric" placeholder="••••" autocomplete="off">
+      </div>
+      <p class="pwd-error hidden" id="pwdError">密码不对哦，再试试吧～ 💭</p>
+      <button type="button" class="pwd-btn" id="pwdSubmit">解锁惊喜 ✨</button>
+    </div>
+  </div>
+
+  <!-- 阶段3：解锁后过渡动画 Hi → 倒计时 → 蛋糕落下 -->
+  <div class="screen screen-unlock-anim" id="screenUnlockAnim">
+    <div class="unlock-scene unlock-hi active" id="unlockHi">
+      <p class="unlock-hi-text">Hi，<span id="unlockName">小可爱</span></p>
+      <p class="unlock-hi-sub">准备好接收祝福了吗～</p>
+    </div>
+    <div class="unlock-scene unlock-countdown" id="unlockCountdown">
+      <p class="countdown-label">惊喜即将开启</p>
+      <div class="countdown-num" id="countdownNum">3</div>
+    </div>
+    <div class="unlock-scene unlock-cake-drop" id="unlockCakeDrop">
+      <div class="falling-cake" id="fallingCake">
+        <div class="fc-top"><div class="fc-candle"><div class="fc-flame"></div></div></div>
+        <div class="fc-mid"></div>
+        <div class="fc-bot"></div>
+      </div>
+      <p class="cake-land-text">🎂 生日快乐 🎂</p>
+    </div>
+  </div>
+
+  <!-- 阶段4：四张图片 + 最终祝福 -->
+  <div class="screen screen-gallery" id="screenGallery">
+    <div class="gallery-scroll" id="galleryScroll">
+      <section class="gallery-slide photo-slide">
+        <div class="photo-card">
+          <img src="assets/slide-1.png" alt="生日祝福" class="slide-photo">
+          <p class="photo-blessing">愿所有美好都向你涌来，每一天都被温柔与幸运包围着～</p>
+        </div>
+        <div class="scroll-hint">↓ 轻轻往下翻</div>
+      </section>
+
+      <section class="gallery-slide photo-slide">
+        <div class="photo-card">
+          <img src="assets/slide-2.png" alt="Happy birthday" class="slide-photo">
+          <p class="photo-blessing">Happy birthday！愿你的每一天都像蛋糕一样甜蜜，像星星一样闪亮～</p>
+        </div>
+        <div class="scroll-hint">↓ 轻轻往下翻</div>
+      </section>
+
+      <section class="gallery-slide photo-slide">
+        <div class="photo-card">
+          <img src="assets/slide-3.png" alt="生日快乐" class="slide-photo">
+          <p class="photo-blessing">生日快乐！愿有人陪你吹蜡烛，有人陪你过每一个温暖的日子～</p>
+        </div>
+        <div class="scroll-hint">↓ 轻轻往下翻</div>
+      </section>
+
+      <section class="gallery-slide photo-slide">
+        <div class="photo-card">
+          <img src="assets/slide-4.png" alt="生日派对" class="slide-photo">
+          <p class="photo-blessing">愿新的一岁充满惊喜与欢笑，被鲜花、礼物和满满的爱包围！</p>
+        </div>
+        <div class="scroll-hint">↓ 最后一页有惊喜</div>
+      </section>
+
+      <section class="gallery-slide slide-final" id="slideFinal">
+        <div class="final-card">
+          <div class="final-ribbon">🎀</div>
+          <div class="final-header">
+            <span class="final-cake">💌</span>
+            <h2>专属祝福</h2>
+            <p class="final-to" id="finalRecipient">致 亲爱的你</p>
+          </div>
+          <div class="final-divider"></div>
+          <p class="final-message" id="finalMessage"></p>
+          <div class="final-footer">
+            <span class="final-from-label">来自</span>
+            <span class="final-from-name" id="finalSender">你的好友</span>
+          </div>
+          <p class="final-wish">愿你被世界温柔以待 ♡</p>
+        </div>
+        <button type="button" class="btn-replay" id="replayBtn">🔄 再看一遍</button>
+      </section>
+    </div>
+  </div>
+
+  <!-- 错误页 -->
+  <div class="screen screen-error hidden" id="screenError">
+    <div class="error-card">
+      <span class="error-emoji">😢</span>
+      <h2>链接无效啦</h2>
+      <p>这个祝福链接好像坏掉了<br>请联系发送者重新生成吧～</p>
+      <a href="index.html" class="error-btn">✨ 制作我的祝福</a>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js"></script>
+  <script src="js/themes.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/view.js"></script>
+</body>
+</html>

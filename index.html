@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>生日祝福工坊 ✨ 可爱生日惊喜</title>
+  <meta name="description" content="制作可爱生日祝福，选主题、写祝福，生成专属链接与二维码。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <div class="cute-bg">
+    <div class="cloud cloud-1">☁️</div>
+    <div class="cloud cloud-2">☁️</div>
+    <div class="cloud cloud-3">🌈</div>
+    <div class="star star-1">⭐</div>
+    <div class="star star-2">✨</div>
+    <div class="star star-3">💫</div>
+  </div>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-mascot">🎂</span>
+        <span class="brand-text">生日祝福工坊</span>
+      </a>
+      <span class="brand-tag">♡ Cute Birthday ♡</span>
+    </div>
+  </header>
+
+  <main class="main container">
+    <section class="hero">
+      <div class="hero-badge">🎈 专属惊喜祝福 🎈</div>
+      <h1 class="hero-title">送 TA 一份<br><span>超可爱的生日惊喜</span></h1>
+      <p class="hero-desc">选个喜欢的主题色，写下暖心祝福，生成链接或二维码～<br>TA 打开后会看到惊喜动画，输入生日密码才能解锁秘密哦！</p>
+    </section>
+
+    <section class="form-section" id="formSection">
+      <form id="blessingForm" class="cute-form" novalidate>
+        <div class="form-bubble">
+          <div class="bubble-title">📝 填写祝福信息</div>
+
+          <div class="field-grid">
+            <div class="field">
+              <label for="recipient">🎀 寿星姓名 / 昵称 <em>*</em></label>
+              <input type="text" id="recipient" maxlength="30" placeholder="例如：小可爱、小明同学" required>
+            </div>
+            <div class="field">
+              <label for="sender">💝 你的姓名 / 昵称 <em>*</em></label>
+              <input type="text" id="sender" maxlength="30" placeholder="例如：你的好朋友" required>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="birthday">🎂 寿星生日 <em>*</em></label>
+            <div class="birthday-input-wrap">
+              <input type="text" id="birthday" maxlength="4" inputmode="numeric" placeholder="0625" required>
+              <span class="birthday-hint">4 位数字，月月日日，如 6 月 25 日填 <strong>0625</strong>（TA 的解锁密码）</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>🎨 选择主题颜色</label>
+            <div class="theme-picker" id="themePicker"></div>
+          </div>
+
+          <div class="field">
+            <label>💬 祝福语</label>
+            <div class="message-mode">
+              <button type="button" class="mode-btn active" data-mode="preset">随机精选</button>
+              <button type="button" class="mode-btn" data-mode="custom">自己写</button>
+            </div>
+
+            <div class="message-box" id="presetBox">
+              <div class="message-display" id="messageDisplay"></div>
+              <button type="button" class="btn-swap" id="swapBtn">🔄 换一句</button>
+            </div>
+
+            <div class="message-custom hidden" id="customBox">
+              <textarea id="customMessage" maxlength="2000" placeholder="写下你想对 TA 说的话吧～最多 2000 字"></textarea>
+              <span class="char-count"><span id="customCharCount">0</span> / 2000</span>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-submit" id="generateBtn">
+            ✨ 立即生成祝福 ✨
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <section class="result-section hidden" id="resultSection">
+      <div class="result-bubble">
+        <div class="result-top">
+          <span class="result-emoji">🎉</span>
+          <h2>祝福生成成功啦！</h2>
+          <p>快把链接或二维码发给 <strong id="resultRecipient"></strong> 吧～</p>
+          <p class="result-pwd-tip">🔐 解锁密码：<strong id="resultPassword"></strong>（TA 的生日月月日日）</p>
+        </div>
+
+        <div class="result-content">
+          <div class="qr-wrap">
+            <div class="qr-card" id="qrcode"></div>
+            <p>扫码打开祝福</p>
+          </div>
+          <div class="link-wrap">
+            <label>祝福链接</label>
+            <div class="link-row">
+              <input type="text" id="shareLink" readonly>
+              <button type="button" class="btn-copy" id="copyBtn">复制</button>
+            </div>
+            <div class="result-btns">
+              <a href="#" class="btn-preview" id="previewLink" target="_blank">👀 预览效果</a>
+              <button type="button" class="btn-reset" id="resetBtn">🔄 重新制作</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-note">
+          💡 TA 会先看到主题色动画并输入生日密码，然后 Hi 问候 → 3 秒倒计时 → 蛋糕落下，再翻阅 4 张生日图，最后看到你的专属祝福～
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 生日祝福工坊 ♡ 把温暖装进每一份祝福</p>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="js/themes.js"></script>
+  <script src="js/blessings.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/create.js"></script>
+</body>
+</html>
